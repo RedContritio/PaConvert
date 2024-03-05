@@ -77,3 +77,16 @@ def test_case_5():
         """
     )
     obj.run(pytorch_code, ["result"])
+
+
+# 'NEAREST' only support 4-D  or 5-D tensor.
+def _test_case_6():
+    pytorch_code = textwrap.dedent(
+        """
+        import torch
+        import torch.nn.functional as F
+        x = torch.tensor([[[1., 2., 3.], [2., 3., 4.]]])
+        result = F.interpolate(x, scale_factor=2)
+        """
+    )
+    obj.run(pytorch_code, ["result"])
